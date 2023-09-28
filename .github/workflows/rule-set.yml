@@ -43,15 +43,16 @@ jobs:
         shell: bash
 
       - name: Checkout codebase
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Checkout cokebar/gfwlist2dnsmasq
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: cokebar/gfwlist2dnsmasq
           path: gfwlist2dnsmasq
 
-      - uses: dev-drprasad/delete-tag-and-release@v1.0
+      - name: Delete current tag and release
+        uses: dev-drprasad/delete-tag-and-release@v1.0
         with:
           tag_name: latest
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -85,12 +86,14 @@ jobs:
       - name: Generate apple-cn
         run: |
           echo 'payload:' > ./publish/apple-cn.yaml
-          curl -sSL ${apple_cn} | perl -ne '/^server=\/([^\/]+)\// && print "$1\n"' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/apple-cn.yaml
+          curl -sSL ${apple_cn} | sed 's/^server=\///g' | sed 's/\/.*//g' | grep -E '^[^.]*\.[^.]*$' | sed "s/^/  - '+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/apple-cn.yaml
+          curl -sSL ${apple_cn} | sed 's/^server=\///g' | sed 's/\/.*//g' | grep -Ev '^[^.]*\.[^.]*$' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/apple-cn.yaml
 
       - name: Generate google-cn
         run: |
           echo 'payload:' > ./publish/google-cn.yaml
-          curl -sSL ${google_cn} | perl -ne '/^server=\/([^\/]+)\// && print "$1\n"' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/google-cn.yaml
+          curl -sSL ${google_cn} | sed 's/^server=\///g' | sed 's/\/.*//g' | grep -E '^[^.]*\.[^.]*$' | sed "s/^/  - '+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/google-cn.yaml
+          curl -sSL ${google_cn} | sed 's/^server=\///g' | sed 's/\/.*//g' | grep -Ev '^[^.]*\.[^.]*$' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./publish/google-cn.yaml
 
       - name: Generate games-cn
         run: |
