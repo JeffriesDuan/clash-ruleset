@@ -193,8 +193,8 @@ jobs:
           curl -sSL ${cnip4} | grep -Ev '#|::' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv4.yaml
           sort --ignore-case -u ./tmp/temp-cnip-ipv4.yaml > ./tmp/cnip-ipv4.yaml
           awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv4.yaml >> ./publish/cnip.yaml
-          curl -sSL ${cn3} | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' > ./tmp/temp-cnip-ipv6.yaml
-          curl -sSL ${cn4} | grep -Ev '#|^::' | grep '::' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv6.yaml
+          curl -sSL ${cnip3} | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' > ./tmp/temp-cnip-ipv6.yaml
+          curl -sSL ${cnip4} | grep -Ev '#|^::' | grep '::' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv6.yaml
           sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml > ./tmp/cnip-ipv6.yaml
           awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv6.yaml >> ./publish/cnip.yaml
 
