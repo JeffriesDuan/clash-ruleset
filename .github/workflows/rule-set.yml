@@ -42,7 +42,7 @@ jobs:
           echo "cnip1=https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt" >> $GITHUB_ENV
           echo "cnip2=https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt" >> $GITHUB_ENV
           echo "cnip3=https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt" >> $GITHUB_ENV
-          echo "cnip4=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.txt" >> $GITHUB_ENV
+          echo "cnip4=http://ftp.apnic.net/stats/apnic/delegated-apnic-latest" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout codebase
@@ -190,11 +190,11 @@ jobs:
           echo 'payload:' > ./publish/cnip.yaml
           curl -sSL ${cnip1} | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' > ./tmp/temp-cnip-ipv4.yaml
           curl -sSL ${cnip2} | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv4.yaml
-          curl -sSL ${cnip4} | grep -Ev '#|::' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv4.yaml
+          curl -sSL ${cnip4} | awk -F '|' '/CN/&&/ipv4/ {print $4 "/" 32-log($5)/log(2)}' | sed "s/^/  - '/g" | sed "s/$/'/g"| sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv4.yaml
           sort --ignore-case -u ./tmp/temp-cnip-ipv4.yaml > ./tmp/cnip-ipv4.yaml
           awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv4.yaml >> ./publish/cnip.yaml
           curl -sSL ${cnip3} | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' > ./tmp/temp-cnip-ipv6.yaml
-          curl -sSL ${cnip4} | grep -Ev '#|^::' | grep '::' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv6.yaml
+          curl -sSL ${cnip4} | awk -F '|' '/CN/&&/ipv6/ {print $4 "/" $5}' | sed "s/^/  - '/g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-cnip-ipv6.yaml
           sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml > ./tmp/cnip-ipv6.yaml
           awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv6.yaml >> ./publish/cnip.yaml
 
