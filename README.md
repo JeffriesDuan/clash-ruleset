@@ -1,4 +1,3 @@
-# 特别说明：“📥 下载软件”、“🏠 私有网络”和“✈️ Telegram”名称已改！
 # 一、 说明
 ## 1. rule-set 规则
 ① 规则参考 [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)，有如下分类：
