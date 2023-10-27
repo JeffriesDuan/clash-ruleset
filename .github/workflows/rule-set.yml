@@ -198,7 +198,7 @@ jobs:
           sort --ignore-case -u ./tmp/temp-cnip-ipv4.yaml > ./publish/cnip.yaml
           curl -sSL ${cnip3} | ${{ env.SED }} > ./tmp/temp-cnip-ipv6.yaml
           curl -sSL ${cnip4} | awk -F '|' '/CN/&&/ipv6/ {print $4 "/" $5}' | ${{ env.SED }} >> ./tmp/temp-cnip-ipv6.yaml
-          sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml > ./publish/cnip.yaml
+          sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml >> ./publish/cnip.yaml
 
       - name: Generate fake-ip-user.yaml
         env:
