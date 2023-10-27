@@ -195,10 +195,12 @@ jobs:
           curl -sSL ${cnip1} | ${{ env.SED }} > ./tmp/temp-cnip-ipv4.yaml
           curl -sSL ${cnip2} | ${{ env.SED }} >> ./tmp/temp-cnip-ipv4.yaml
           curl -sSL ${cnip4} | awk -F '|' '/CN/&&/ipv4/ {print $4 "/" 32-log($5)/log(2)}' | ${{ env.SED }} >> ./tmp/temp-cnip-ipv4.yaml
-          sort --ignore-case -u ./tmp/temp-cnip-ipv4.yaml > ./publish/cnip.yaml
+          sort --ignore-case -u ./tmp/temp-cnip-ipv4.yaml > ./tmp/cnip-ipv4.yaml
+          awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv4.yaml >> ./publish/cnip.yaml
           curl -sSL ${cnip3} | ${{ env.SED }} > ./tmp/temp-cnip-ipv6.yaml
           curl -sSL ${cnip4} | awk -F '|' '/CN/&&/ipv6/ {print $4 "/" $5}' | ${{ env.SED }} >> ./tmp/temp-cnip-ipv6.yaml
-          sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml >> ./publish/cnip.yaml
+          sort --ignore-case -u ./tmp/temp-cnip-ipv6.yaml > ./tmp/cnip-ipv6.yaml
+          awk -F'/' '!seen[$1]++' ./tmp/cnip-ipv6.yaml >> ./publish/cnip.yaml
 
       - name: Generate fake-ip-user.yaml
         env:
