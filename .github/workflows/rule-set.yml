@@ -210,11 +210,11 @@ jobs:
               - 'adguardteam.github.io'
               - 'anti-ad.net'
             default-nameserver:
-              - https://223.5.5.5/dns-query
               - https://1.12.12.12/dns-query
+              - https://223.5.5.5/dns-query
             nameserver:
-              - https://dns.alidns.com/dns-query
               - https://doh.pub/dns-query
+              - https://dns.alidns.com/dns-query
           EOF
 
       - name: Generate redir-host-user.yaml
@@ -230,17 +230,17 @@ jobs:
             enhanced-mode: fake-ip
             fake-ip-filter: ['+.*']
             default-nameserver:
-              - https://223.5.5.5/dns-query
               - https://1.12.12.12/dns-query
+              - https://223.5.5.5/dns-query
             nameserver:
               - 'https://dns.google/dns-query#🪜 代理域名'
               - 'https://cloudflare-dns.com/dns-query#🪜 代理域名'
             proxy-server-nameserver:
-              - https://dns.alidns.com/dns-query
               - https://doh.pub/dns-query
+              - https://dns.alidns.com/dns-query
             nameserver-policy:
-              'rule-set:microsoft-cn,apple-cn,google-cn,games-cn': [https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
-              'rule-set:cn,private': [https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+              'rule-set:microsoft-cn,apple-cn,google-cn,games-cn': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
+              'rule-set:cn,private': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
           EOF
           rm -rf ./tmp
 
