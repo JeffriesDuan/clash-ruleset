@@ -88,10 +88,10 @@ jobs:
             archs=$(curl -sSL ${microsoft_cn} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
             curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
           done
-          curl -sSL ${microsoft_cn} | grep 'full:' | sed "s/^full:/  - '/g" | sed "s/$/'/g" >> ./tmp/temp-microsoft-cn.yaml
+          curl -sSL ${microsoft_cn} | grep 'full:.*@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
           for((i=0;i<count;i++));do
             archs=$(curl -sSL ${microsoft_cn} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
-            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep 'full:' | sed "s/^full:/  - '/g" | sed "s/$/'/g" >> ./tmp/temp-microsoft-cn.yaml
+            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep 'full:.*@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
           done
           echo 'payload:' > ./publish/microsoft-cn.yaml
           sort --ignore-case -u ./tmp/temp-microsoft-cn.yaml >> ./publish/microsoft-cn.yaml
@@ -114,10 +114,10 @@ jobs:
             archs=$(curl -sSL ${games_cn1} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
             curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
           done
-          curl -sSL ${games_cn1} | grep 'full:' | sed "s/^full:/  - '/g" | sed "s/$/'/g" >> ./tmp/temp-games-cn.yaml
+          curl -sSL ${games_cn1} | grep 'full:.*@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
           for((i=0;i<count;i++));do
             archs=$(curl -sSL ${games_cn1} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
-            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep 'full:' | sed "s/^full:/  - '/g" | sed "s/$/'/g" >> ./tmp/temp-games-cn.yaml
+            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs" | grep 'full:.*@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
           done
           curl -sSL ${games_cn2} | grep -Ev '#|DOMAIN-KEYWORD' | grep 'DOMAIN' | sed "s/DOMAIN,/'/g" | sed "s/DOMAIN-SUFFIX,/'+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-games-cn.yaml
           curl -sSL ${games_cn3} | grep -Ev '#|DOMAIN-KEYWORD' | grep 'DOMAIN' | sed "s/DOMAIN,/'/g" | sed "s/DOMAIN-SUFFIX,/'+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-games-cn.yaml
