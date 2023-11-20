@@ -290,7 +290,7 @@ rules:
   - RULE-SET,privateip,🏠 私有网络,no-resolve
   - RULE-SET,cnip,🇨🇳 国内 IP
 ```
-# 三、 导入 [Clash Verge](https://github.com/zzzgydi/clash-verge)（Windows 端）
+# 三、 导入（以 [Clash Verge](https://github.com/zzzgydi/clash-verge) Windows 端导入 rule-set 规则集为例）
 1. 首次使用可进入 Clash Verge->配置，新建“Merge”类型的配置，完成后点击“保存”，右击新建的 Merge 文件，选择“启用”
 2. 进入文件夹 *%USERPROFILE%.config\clash-verge\profiles*，找到与第 1 步新建的 Merge 文件相对应的 .yaml 文件，复制其文件名并替换下面命令中的{文件名}；将下面命令中的{DNS 模式}替换为正在使用的 DNS 模式（`fake-ip` 或 `redir-host`）  
 以管理员身份打开 CMD 命令提示符，执行如下命令：
