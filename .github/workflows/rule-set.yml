@@ -223,6 +223,7 @@ jobs:
             fake-ip-range: 198.18.0.1/16
             enhanced-mode: fake-ip
             fake-ip-filter:
+              - '*'
           EOF
           curl -sSL https://raw.githubusercontent.com/juewuy/ShellClash/master/public/fake_ip_filter.list | grep -v '#' | sed '/^\s*$/d' | sed "s/.*/'&'/g" | sed 's/^/    - /g' >> ./publish/fake-ip-user.yaml
           curl -sSL https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt | grep 'udp:' | grep -i '\.[A-Z]' | sed "s/^.*\/\//'/g" | sed "s/:.*\/.*/'/g" | sed 's/^/    - /g' >> ./publish/fake-ip-user.yaml
