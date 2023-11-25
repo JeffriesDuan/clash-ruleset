@@ -128,7 +128,7 @@ jobs:
           curl -sSL ${games_cn2} | grep -Ev '#|DOMAIN-KEYWORD' | grep 'DOMAIN' | sed "s/DOMAIN,/'/g" | sed "s/DOMAIN-SUFFIX,/'+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-games-cn.yaml
           curl -sSL ${games_cn3} | grep -Ev '#|DOMAIN-KEYWORD' | grep 'DOMAIN' | sed "s/DOMAIN,/'/g" | sed "s/DOMAIN-SUFFIX,/'+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-games-cn.yaml
           echo 'payload:' > ./publish/games-cn.yaml
-          cp -f ./tmp/temp-games-cn.yaml >> ./publish/games-cn.yaml
+          cp -f ./tmp/temp-games-cn.yaml ./publish/games-cn.yaml
 
       - name: Generate netflix
         run: |
