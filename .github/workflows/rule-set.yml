@@ -184,7 +184,7 @@ jobs:
 
       - name: Generate proxy
         run: |
-          cd gfwlist2dnsmasq || exit 1
+          cd ./gfwlist2dnsmasq || exit 1
           chmod +x ./gfwlist2dnsmasq.sh
           ./gfwlist2dnsmasq.sh -l -o ../tmp/temp-proxy1.yaml
           sed "s/^/  - '+./g" ../tmp/temp-proxy1.yaml | sed "s/$/'/g" > ../tmp/temp-proxy2.yaml
