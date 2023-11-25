@@ -97,7 +97,7 @@ jobs:
             done
           done
           echo 'payload:' > ./publish/microsoft-cn.yaml
-          sort --ignore-case -u ./tmp/temp-microsoft-cn.yaml >> ./publish/microsoft-cn.yaml
+          cp -f ./tmp/temp-microsoft-cn.yaml >> ./publish/microsoft-cn.yaml
 
       - name: Generate apple-cn
         run: |
