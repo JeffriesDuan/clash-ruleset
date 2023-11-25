@@ -91,7 +91,7 @@ jobs:
             curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
             curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
             for((j=0;j<count2;j++)); do
-              archs2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
+              archs2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep 'include:' | sed 's/^include://g' | sed -n "$((j+1))p")
               curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs2" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
               curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs2" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-microsoft-cn.yaml
             done
@@ -111,18 +111,18 @@ jobs:
 
       - name: Generate games-cn
         run: |
-          sum1=$(curl -sSL ${games_cn1} | grep 'include:' | wc -l)
+          count1=$(curl -sSL ${games_cn1} | grep 'include:' | wc -l)
           curl -sSL ${games_cn1} | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" > ./tmp/temp-games-cn.yaml
           curl -sSL ${games_cn1} | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
-          for((x=0;x<sum1;x++)); do
-            para1=$(curl -sSL ${games_cn1} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
-            sum2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para1" | grep 'include:' | wc -l)
-            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para1" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
-            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para1" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
-            for((y=0;y<sum2;y++)); do
-              para2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para1" | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
-              curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para2" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
-              curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$para2" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
+          for((i=0;i<count1;i++)); do
+            archs1=$(curl -sSL ${games_cn1} | grep 'include:' | sed 's/^include://g' | sed -n "$((i+1))p")
+            count2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep 'include:' | wc -l)
+            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
+            curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
+            for((j=0;j<count2;j++)); do
+              archs2=$(curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs1" | grep 'include:' | sed 's/^include://g' | sed -n "$((j+1))p")
+              curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs2" | grep -Ev '#|full:|keyword:|regexp:' | grep '@cn' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
+              curl -sSL "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/$archs2" | grep -v '#' | grep 'full:' | grep '@cn' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ./tmp/temp-games-cn.yaml
             done
           done
           curl -sSL ${games_cn2} | grep -Ev '#|DOMAIN-KEYWORD' | grep 'DOMAIN' | sed "s/DOMAIN,/'/g" | sed "s/DOMAIN-SUFFIX,/'+./g" | sed "s/$/'/g" | sed '/^\s*$/d' >> ./tmp/temp-games-cn.yaml
