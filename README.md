@@ -2,27 +2,27 @@
 ## 1. rule-set 规则
 ① 规则参考 [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)，有如下分类：
 ```
-  - RULE-SET,ads,⛔️ 广告域名
-  - RULE-SET,private,🏠 私有网络
-  - RULE-SET,microsoft-cn,Ⓜ️ Microsoft 中国
-  - RULE-SET,apple-cn,🍎 Apple 中国
-  - RULE-SET,google-cn,🗽 Google 中国
-  - RULE-SET,games-cn,🎮 国区游戏
-  - RULE-SET,netflix,🎥 Netflix
-  - RULE-SET,disney,📽️ Disney+
+  - RULE-SET,ads,🛑 广告拦截
+  - RULE-SET,private,🔒 私有网络
+  - RULE-SET,microsoft-cn,Ⓜ️ 微软服务
+  - RULE-SET,apple-cn,🍎 苹果服务
+  - RULE-SET,google-cn,📢 谷歌服务
+  - RULE-SET,games-cn,🎮 游戏平台
+  - RULE-SET,netflix,🎥 奈飞视频
+  - RULE-SET,disney,📽️ 迪士尼+
   - RULE-SET,max,🎞️ Max
   - RULE-SET,primevideo,🎬 Prime Video
   - RULE-SET,appletv,🍎 Apple TV+
-  - RULE-SET,youtube,📹 YouTube
+  - RULE-SET,youtube,📹 油管视频
   - RULE-SET,tiktok,🎵 TikTok
   - RULE-SET,bilibili,📺 哔哩哔哩
   - RULE-SET,openai,🤖 人工智能
   - RULE-SET,networktest,📈 网络测试
   - RULE-SET,applications,🖥️ 直连软件
   - RULE-SET,proxy,🪜 代理域名
-  - RULE-SET,cn,⚡ 直连域名
-  - RULE-SET,telegramip,✈️ Telegram
-  - RULE-SET,privateip,🏠 私有网络
+  - RULE-SET,cn,🔗 直连域名
+  - RULE-SET,telegramip,📲 电报消息
+  - RULE-SET,privateip,🔒 私有网络
   - RULE-SET,cnip,🇨🇳 国内 IP
 ```
 ② 每天早上 3 点（北京时间）自动构建生成  
@@ -67,15 +67,15 @@
 proxy-groups:
   - {name: 📈 网络测试, type: select, proxies: [🎯 全球直连, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点]}
 
-  - {name: ⚡ 直连域名, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
+  - {name: 🔗 直连域名, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
   - {name: 🪜 代理域名, type: select, proxies: [🚀 节点选择, 🎯 全球直连]}
 
-  - {name: 🎮 国区游戏, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
+  - {name: 🎮 游戏平台, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
-  - {name: 🎥 Netflix, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
+  - {name: 🎥 奈飞视频, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
-  - {name: 📽️ Disney+, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
+  - {name: 📽️ 迪士尼+, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
   - {name: 🎞️ Max, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
@@ -83,7 +83,7 @@ proxy-groups:
 
   - {name: 🍎 Apple TV+, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
-  - {name: 📹 YouTube, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
+  - {name: 📹 油管视频, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
   - {name: 🎵 TikTok, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
 
@@ -91,25 +91,23 @@ proxy-groups:
 
   - {name: 🤖 人工智能, type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点]}
 
-  - {name: Ⓜ️ Microsoft 中国, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
+  - {name: Ⓜ️ 微软服务, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
-  - {name: 🗽 Google 中国, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
+  - {name: 📢 谷歌服务, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
-  - {name: 🍎 Apple 中国, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
+  - {name: 🍎 苹果服务, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
   - {name: 🇨🇳 国内 IP, type: select, proxies: [🎯 全球直连, 🚀 节点选择]}
 
-  - {name: ✈️ Telegram, type: select, proxies: [🚀 节点选择]}
+  - {name: 📲 电报消息, type: select, proxies: [🚀 节点选择]}
 
   - {name: 🖥️ 直连软件, type: select, proxies: [🎯 全球直连]}
 
-  - {name: 🏠 私有网络, type: select, proxies: [🎯 全球直连]}
+  - {name: 🔒 私有网络, type: select, proxies: [🎯 全球直连]}
 
-  - {name: ⛔️ 广告域名, type: select, proxies: [🛑 全球拦截]}
+  - {name: 🛑 广告拦截, type: select, proxies: [REJECT]}
 
   - {name: 🎯 全球直连, type: select, proxies: [DIRECT]}
-
-  - {name: 🛑 全球拦截, type: select, proxies: [REJECT]}
 
 rule-providers:
   ads:
@@ -267,27 +265,27 @@ rule-providers:
     interval: 86400
 
 rules:
-  - RULE-SET,ads,⛔️ 广告域名
-  - RULE-SET,private,🏠 私有网络
-  - RULE-SET,microsoft-cn,Ⓜ️ Microsoft 中国
-  - RULE-SET,apple-cn,🍎 Apple 中国
-  - RULE-SET,google-cn,🗽 Google 中国
-  - RULE-SET,games-cn,🎮 国区游戏
-  - RULE-SET,netflix,🎥 Netflix
-  - RULE-SET,disney,📽️ Disney+
+  - RULE-SET,ads,🛑 广告拦截
+  - RULE-SET,private,🔒 私有网络
+  - RULE-SET,microsoft-cn,Ⓜ️ 微软服务
+  - RULE-SET,apple-cn,🍎 苹果服务
+  - RULE-SET,google-cn,📢 谷歌服务
+  - RULE-SET,games-cn,🎮 游戏平台
+  - RULE-SET,netflix,🎥 奈飞视频
+  - RULE-SET,disney,📽️ 迪士尼+
   - RULE-SET,max,🎞️ Max
   - RULE-SET,primevideo,🎬 Prime Video
   - RULE-SET,appletv,🍎 Apple TV+
-  - RULE-SET,youtube,📹 YouTube
+  - RULE-SET,youtube,📹 油管视频
   - RULE-SET,tiktok,🎵 TikTok
   - RULE-SET,bilibili,📺 哔哩哔哩
   - RULE-SET,openai,🤖 人工智能
   - RULE-SET,networktest,📈 网络测试
   - RULE-SET,applications,🖥️ 直连软件
   - RULE-SET,proxy,🪜 代理域名
-  - RULE-SET,cn,⚡ 直连域名
-  - RULE-SET,telegramip,✈️ Telegram
-  - RULE-SET,privateip,🏠 私有网络,no-resolve
+  - RULE-SET,cn,🔗 直连域名
+  - RULE-SET,telegramip,📲 电报消息
+  - RULE-SET,privateip,🔒 私有网络,no-resolve
   - RULE-SET,cnip,🇨🇳 国内 IP
 ```
 # 三、 导入（以 [Clash Verge](https://github.com/zzzgydi/clash-verge) Windows 端导入 rule-set 规则集为例）
