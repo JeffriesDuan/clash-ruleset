@@ -16,7 +16,7 @@
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,tiktok,🎵 TikTok
   - RULE-SET,bilibili,📺 哔哩哔哩
-  - RULE-SET,openai,🤖 人工智能
+  - RULE-SET,ai,🤖 人工智能
   - RULE-SET,networktest,📈 网络测试
   - RULE-SET,applications,🖥️ 直连软件
   - RULE-SET,proxy,🪜 代理域名
@@ -40,7 +40,7 @@
 ⑭ `RULE-SET:youtube` 源采用 [blackmatrix7/ios_rule_script/YouTube](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/YouTube)  
 ⑮ `RULE-SET:tiktok` 源采用 [blackmatrix7/ios_rule_script/TikTok](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/TikTok)  
 ⑯ `RULE-SET:bilibili` 源采用 [blackmatrix7/ios_rule_script/BiliBili](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/BiliBili)  
-⑰ `RULE-SET:openai` 源采用 [blackmatrix7/ios_rule_script/OpenAI](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/OpenAI)  
+⑰ `RULE-SET:ai` 源采用 [blackmatrix7/ios_rule_script/OpenAI/OpenAI.yaml](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/OpenAI)、[blackmatrix7/ios_rule_script/Bing/Bing.yaml](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/Bing) 和 [blackmatrix7/ios_rule_script/BardAI/BardAI.yaml](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/BardAI) 组合  
 ⑱ `RULE-SET:networktest` 源采用 [blackmatrix7/ios_rule_script/Speedtest](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/Speedtest) 和 IPv6 测试网站（采用 `keyword` 关键字）组合  
 ⑲ `RULE-SET:applications` 源采用 [Loyalsoldier/clash-rules/applications.txt](https://github.com/Loyalsoldier/clash-rules/tree/release)  
 ⑳ `RULE-SET:proxy` 源采用 [cokebar/gfwlist2dnsmasq](https://github.com/cokebar/gfwlist2dnsmasq) 生成的 [gfwlist](https://github.com/gfwlist/gfwlist) 和 [blackmatrix7/ios_rule_script/Global/Global_Domain.yaml](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Clash/Global) 组合  
@@ -208,11 +208,11 @@ rule-providers:
     path: ./ruleset/bilibili.yaml
     interval: 86400
 
-  openai:
+  ai:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/DustinWin/clash-ruleset@release/openai.yaml"
-    path: ./ruleset/openai.yaml
+    url: "https://cdn.jsdelivr.net/gh/DustinWin/clash-ruleset@release/ai.yaml"
+    path: ./ruleset/ai.yaml
     interval: 86400
 
   networktest:
@@ -279,7 +279,7 @@ rules:
   - RULE-SET,youtube,📹 油管视频
   - RULE-SET,tiktok,🎵 TikTok
   - RULE-SET,bilibili,📺 哔哩哔哩
-  - RULE-SET,openai,🤖 人工智能
+  - RULE-SET,ai,🤖 人工智能
   - RULE-SET,networktest,📈 网络测试
   - RULE-SET,applications,🖥️ 直连软件
   - RULE-SET,proxy,🪜 代理域名
