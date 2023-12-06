@@ -252,6 +252,17 @@ jobs:
       - name: Generate redir-host-user.yaml
         run: |
           cat <<EOF > ./publish/redir-host-user.yaml
+          sniffer:
+            enable: true
+            sniff:
+              HTTP:
+                ports: [80, 8080-8880]
+                override-destination: true
+              TLS:
+                ports: [443, 8443]
+              QUIC:
+                ports: [443, 8443]
+
           dns:
             enable: true
             prefer-h3: true
