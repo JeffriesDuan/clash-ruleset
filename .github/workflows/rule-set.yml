@@ -199,8 +199,8 @@ jobs:
           chmod +x ./gfwlist2dnsmasq.sh
           ./gfwlist2dnsmasq.sh -l -o ../tmp/temp-proxy1.yaml
           sed "s/^/  - '+./g" ../tmp/temp-proxy1.yaml | sed "s/$/'/g" > ../tmp/temp-proxy2.yaml
-          curl -sSL ${proxy} | grep -Ev 'full:|keyword:|regexp:' | sed 's/:@\!cn$//g' | sed '/^\s*$/d' | sed "s/^/  - '+./g" | sed "s/ *@cn$/'/g" >> ../tmp/temp-proxy2.yaml
-          curl -sSL ${proxy} | grep 'full:' | sed 's/:@\!cn$//g' | sed "s/^full:/  - '/g" | sed "s/ *@cn$/'/g" >> ../tmp/temp-proxy2.yaml
+          curl -sSL ${proxy} | grep -Ev 'full:|keyword:|regexp:' | sed 's/:@\!cn$//g' | sed '/^\s*$/d' | sed "s/^/  - '+./g" | sed "s/$/'/g" >> ../tmp/temp-proxy2.yaml
+          curl -sSL ${proxy} | grep 'full:' | sed 's/:@\!cn$//g' | sed "s/^full:/  - '/g" | sed "s/$/'/g" >> ../tmp/temp-proxy2.yaml
           echo 'payload:' > ../publish/proxy.yaml
           sort --ignore-case -u ../tmp/temp-proxy2.yaml >> ../publish/proxy.yaml
 
