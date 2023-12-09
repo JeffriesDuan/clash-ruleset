@@ -60,7 +60,7 @@ jobs:
           tag_name: latest
           github_token: ${{ secrets.GITHUB_TOKEN }}
           delete_release: true
-          repo: DustinWin/clash-ruleset
+          repo: ${{ github.repository }}
 
       - name: Generate ads
         run: |
