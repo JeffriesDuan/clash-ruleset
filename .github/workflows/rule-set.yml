@@ -64,7 +64,7 @@ jobs:
 
       - name: Generate ads
         run: |
-          mkdir -p ./tmp ./publish
+          mkdir -p ./tmp/ ./publish/
           curl -sSL ${ads} | grep -v '#' | sed '/^\s*$/d' > ./publish/ads.yaml
 
       - name: Generate private
@@ -195,7 +195,7 @@ jobs:
 
       - name: Generate proxy
         run: |
-          cd ./gfwlist2dnsmasq || exit 1
+          cd ./gfwlist2dnsmasq/ || exit 1
           chmod +x ./gfwlist2dnsmasq.sh
           ./gfwlist2dnsmasq.sh -l -o ../tmp/temp-proxy1.yaml
           sed "s/^/  - '+./g" ../tmp/temp-proxy1.yaml | sed "s/$/'/g" > ../tmp/temp-proxy2.yaml
@@ -286,7 +286,7 @@ jobs:
               'rule-set:microsoft-cn,apple-cn,google-cn,games-cn': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
               'rule-set:cn,private': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
           EOF
-          rm -rf ./tmp
+          rm -rf ./tmp*
 
       - name: Release and upload assets
         uses: svenstaro/upload-release-action@v2
@@ -299,7 +299,7 @@ jobs:
 
       - name: Git push assets to "release" branch
         run: |
-          cd ./publish || exit 1
+          cd ./publish/ || exit 1
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -311,7 +311,7 @@ jobs:
 
       - name: Purge jsDelivr CDN
         run: |
-          cd ./publish || exit 1
+          cd ./publish/ || exit 1
           for file in $(ls); do
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
           done
