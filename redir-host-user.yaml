@@ -1,0 +1,32 @@
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  fake-ip-range: 198.18.0.1/16
+  enhanced-mode: fake-ip
+  fake-ip-filter: ['+.*']
+  default-nameserver:
+    - https://1.12.12.12/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver:
+    - 'https://dns.google/dns-query#🪜 代理域名'
+    - 'https://cloudflare-dns.com/dns-query#🪜 代理域名'
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  nameserver-policy:
+    'rule-set:microsoft-cn,apple-cn,google-cn,games-cn': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
+    'rule-set:cn,private': [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
